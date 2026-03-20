@@ -1,0 +1,93 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "A sales conversation with a buyer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "buyerName": { "type": "string" },
+        "ticketType": { "type": "string" },
+        "price": { "type": "number" },
+        "status": { "type": "string", "enum": ["active", "paid", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "status", "createdAt"]
+    },
+    "QuickResponse": {
+      "title": "QuickResponse",
+      "description": "Predefined response for common situations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "content"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "An individual message in a conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "conversationId": { "type": "string" },
+        "role": { "type": "string", "enum": ["buyer", "ai_suggestion"] },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "role", "content", "createdAt"]
+    },
+    "QuickResponseHistory": {
+      "title": "QuickResponseHistory",
+      "description": "History of quick response usage",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "qrId": { "type": "string" },
+        "qrTitle": { "type": "string" },
+        "usedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "qrId", "qrTitle", "usedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Sales conversations"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a conversation"
+    },
+    "/quick_responses/{responseId}": {
+      "schema": "QuickResponse",
+      "description": "User-defined quick responses"
+    },
+    "/qr_history/{historyId}": {
+      "schema": "QuickResponseHistory",
+      "description": "History of quick response usage"
+    }
+  }
+}
