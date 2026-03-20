@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#E4E3E0] text-[#141414];
+  }
+}
+
+.prose-invert {
+  --tw-prose-body: #fff;
+  --tw-prose-headings: #fff;
+  --tw-prose-lead: #fff;
+  --tw-prose-links: #fff;
+  --tw-prose-bold: #fff;
+  --tw-prose-counters: #fff;
+  --tw-prose-bullets: #fff;
+  --tw-prose-hr: #fff;
+  --tw-prose-quotes: #fff;
+  --tw-prose-quote-borders: #fff;
+  --tw-prose-captions: #fff;
+  --tw-prose-code: #fff;
+  --tw-prose-pre-code: #fff;
+  --tw-prose-pre-bg: #fff;
+  --tw-prose-th-borders: #fff;
+  --tw-prose-td-borders: #fff;
+}
